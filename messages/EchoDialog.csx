@@ -128,7 +128,7 @@ public class EchoDialog : IDialog<object> {
         "tarsir",
         "platypus",
         "caribou",
-        "sloth"
+        "sloth",
         "gerbil",
         "rat",
         "beaver",

@@ -76,7 +76,7 @@ public class EchoDialog : IDialog<object>
         "stepdaughter"
     };
     private string GetRelative(){
-        return _rand.Sample(_relatives);
+        return _relatives[_rand.Next(_relatives.Length)];
     }
     private string GetAnimal(){
         return "hampster";
@@ -95,11 +95,5 @@ public class EchoDialog : IDialog<object>
             await context.PostAsync("Did not reset count.");
         }
         context.Wait(MessageReceivedAsync);
-    }
-}
-
-public static class RandomExtensions {
-    public static T Sample<T>(this Random rand, T[] array) {
-        return array[rand.Next(array.Length)];
     }
 }

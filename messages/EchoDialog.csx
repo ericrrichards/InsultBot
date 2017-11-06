@@ -8,7 +8,7 @@ using Microsoft.Bot.Connector;
 public class EchoDialog : IDialog<object>
 {
     protected int count = 1;
-
+    private Random _rand = new Random();
     public Task StartAsync(IDialogContext context)
     {
         try
@@ -41,9 +41,19 @@ public class EchoDialog : IDialog<object>
         }
         else
         {
-            await context.PostAsync($"{this.count++}: You said {message.Text}");
+            await context.PostAsync($"Your {GetRelative()} is a {GetAdjective()} {GetAnimal()}");
             context.Wait(MessageReceivedAsync);
         }
+    }
+    private string GetAdjective(){
+        return "purple";
+    }
+
+    private string GetRelative(){
+        return "mother";
+    }
+    private string GetAnimal(){
+        return "hampster";
     }
 
     public async Task AfterResetAsync(IDialogContext context, IAwaitable<bool> argument)

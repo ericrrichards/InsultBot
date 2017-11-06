@@ -49,8 +49,34 @@ public class EchoDialog : IDialog<object>
         return "purple";
     }
 
+    private static string[] _relatives = new[] {
+        "mother",
+        "father",
+        "sister",
+        "brother",
+        "grandmother",
+        "cousin",
+        "grandfather",
+        "uncle",
+        "aunt",
+        "wife",
+        "son",
+        "daughter",
+        "niece",
+        "nephew",
+        "girlfriend",
+        "wife",
+        "husband",
+        "boyfriend",
+        "mother-in-law",
+        "father-in-law",
+        "brother-in-law",
+        "sister-in-law",
+        "stepson",
+        "stepdaughter"
+    };
     private string GetRelative(){
-        return "mother";
+        return _rand.Sample(_relatives);
     }
     private string GetAnimal(){
         return "hampster";
@@ -69,5 +95,11 @@ public class EchoDialog : IDialog<object>
             await context.PostAsync("Did not reset count.");
         }
         context.Wait(MessageReceivedAsync);
+    }
+}
+
+public static class RandomExtensions {
+    public static T Sample<T>(this Random rand, T[] array) {
+        return array[rand.Next(array.Length)];
     }
 }
